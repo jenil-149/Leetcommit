@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LeetCommit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- ─── Header ─── -->
+    <header class="header">
+      <div class="logo-row">
+        <img src="icons/LeetCommit.png" alt="LeetCommit" class="logo-img" />
+        <h1 class="logo-text">LeetCommit</h1>
+      </div>
+    </header>
+
+    <!-- ─── Status Banner ─── -->
+    <div id="statusBanner" class="status-banner hidden">
+      <span id="statusIcon" class="status-icon"></span>
+      <span id="statusText" class="status-text"></span>
+    </div>
+
+    <!-- ─── Push Button ─── -->
+    <button type="button" id="pushBtn" class="push-btn">
+      <span class="push-btn-icon material-symbols-rounded">arrow_upward</span>
+      <span id="pushBtnText" class="push-btn-text">Push to GitHub</span>
+      <span id="pushBtnLoader" class="push-btn-loader hidden">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </span>
+    </button>
+
+    <!-- ─── Settings (Collapsible) ─── -->
+    <details id="settingsDetails" class="settings-details">
+      <summary class="settings-toggle">
+        <span class="settings-gear material-symbols-rounded">settings</span>
+        <span>Settings</span>
+      </summary>
+
+      <form id="settingsForm" class="form" autocomplete="off">
+        <!-- GitHub PAT -->
+        <div class="field">
+          <label for="pat">Personal Access Token</label>
+          <div class="input-wrap">
+            <input type="password" id="pat" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" spellcheck="false" required />
+            <button type="button" id="togglePat" class="eye-btn" aria-label="Toggle token visibility">
+              <span id="eyeOpen" class="eye-icon material-symbols-rounded">visibility</span>
+              <span id="eyeClosed" class="eye-icon material-symbols-rounded hidden">visibility_off</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Username -->
+        <div class="field">
+          <label for="username">GitHub Username</label>
+          <input type="text" id="username" placeholder="octocat" spellcheck="false" required />
+        </div>
+
+        <!-- Repo -->
+        <div class="field">
+          <label for="repo">Repository Name</label>
+          <input type="text" id="repo" placeholder="leetcode-solutions" spellcheck="false" required />
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit" id="saveBtn" class="save-btn">
+          <span class="save-btn-text">Save</span>
+          <span class="save-btn-loader hidden">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </span>
+        </button>
+      </form>
+    </details>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

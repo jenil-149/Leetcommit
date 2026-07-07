@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCommit",
+  "version": "2.0.0",
+  "description": "Manually push accepted LeetCode C++ solutions to GitHub with one click.",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://leetcode.com/*",
+    "https://api.github.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/LeetCommit.png",
+      "48": "icons/LeetCommit.png",
+      "128": "icons/LeetCommit.png"
+    }
+  },
+  "icons": {
+    "16": "icons/LeetCommit.png",
+    "48": "icons/LeetCommit.png",
+    "128": "icons/LeetCommit.png"
+  }
+}
