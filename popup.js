@@ -91,6 +91,7 @@ pushBtn.addEventListener('click', async () => {
   try {
     const results = await chrome.scripting.executeScript({
       target: { tabId: tab.id },
+      world: 'MAIN',
       func: scrapeLeetCodePage,
     });
 
@@ -156,6 +157,7 @@ function scrapeLeetCodePage() {
   }
 
   function extractCode() {
+    // Method 1: Monaco Editor API (works because we inject in MAIN world)
     try {
       if (typeof monaco !== 'undefined' && monaco.editor) {
         const editors = monaco.editor.getEditors ? monaco.editor.getEditors() : null;
@@ -171,10 +173,19 @@ function scrapeLeetCodePage() {
       }
     } catch (_) { }
 
+    // Method 2: Try CodeMirror (LeetCode sometimes uses it)
+    try {
+      const cmElement = document.querySelector('.CodeMirror');
+      if (cmElement && cmElement.CodeMirror) {
+        const code = cmElement.CodeMirror.getValue();
+        if (code && code.trim().length > 10) return code;
+      }
+    } catch (_) { }
+
+    // Method 3: DOM fallback – collect all view-lines (may be incomplete due to virtualization)
     const viewLines = document.querySelector('.view-lines');
     if (viewLines) {
       const lines = viewLines.querySelectorAll('.view-line');
-
       const sorted = Array.from(lines)
         .map((line) => ({
           top: parseFloat(line.style.top) || 0,
@@ -185,6 +196,7 @@ function scrapeLeetCodePage() {
       if (code.trim().length > 10) return code;
     }
 
+    // Method 4: Plain code blocks
     const codePre = document.querySelector('pre[class*="code"], code[class*="language-cpp"]');
     if (codePre) return codePre.textContent;
 
