@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "LeetCommit",
-  "version": "2.0.0",
-  "description": "Manually push accepted LeetCode C++ solutions to GitHub with one click.",
+  "version": "2.1.0",
+  "description": "Push accepted LeetCode solutions to GitHub with one click. Supports all languages with auto-detection.",
   "permissions": [
     "storage",
     "scripting",

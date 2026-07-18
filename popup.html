@@ -41,6 +41,17 @@
       </span>
     </button>
 
+    <!-- ─── Recent Pushes ─── -->
+    <details class="history-details">
+      <summary class="history-toggle">
+        <span class="history-icon material-symbols-rounded">history</span>
+        <span>Recent Pushes</span>
+      </summary>
+      <div id="historyList" class="history-list">
+        <div class="history-empty">No pushes yet</div>
+      </div>
+    </details>
+
     <!-- ─── Settings (Collapsible) ─── -->
     <details id="settingsDetails" class="settings-details">
       <summary class="settings-toggle">
@@ -71,6 +82,18 @@
         <div class="field">
           <label for="repo">Repository Name</label>
           <input type="text" id="repo" placeholder="leetcode-solutions" spellcheck="false" required />
+        </div>
+
+        <!-- Branch -->
+        <div class="field">
+          <label for="branch">Branch <span class="field-hint">(optional, default: main)</span></label>
+          <input type="text" id="branch" placeholder="main" spellcheck="false" />
+        </div>
+
+        <!-- Commit Prefix -->
+        <div class="field">
+          <label for="commitPrefix">Commit Prefix <span class="field-hint">(optional)</span></label>
+          <input type="text" id="commitPrefix" placeholder="[LC]" spellcheck="false" />
         </div>
 
         <!-- Save Button -->

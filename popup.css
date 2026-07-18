@@ -41,6 +41,8 @@ body {
   gap: 14px;
 }
 
+/* ─── Header ─── */
+
 .header {
   text-align: center;
 }
@@ -67,6 +69,8 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ─── Status Banner ─── */
 
 .status-banner {
   display: flex;
@@ -96,6 +100,8 @@ body {
   color: var(--accent);
 }
 
+/* ─── Push Button ─── */
+
 .push-btn {
   display: flex;
   align-items: center;
@@ -112,6 +118,7 @@ body {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 .push-btn::before {
@@ -120,6 +127,7 @@ body {
   inset: 0;
   background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
   opacity: 0;
+  transition: opacity 0.15s;
 }
 
 .push-btn:hover:not(:disabled) {
@@ -150,9 +158,27 @@ body {
   justify-content: center;
 }
 
+/* ─── Dot Loader Animation ─── */
+
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-5px); opacity: 1; }
+}
+
 .push-btn-loader .dot,
 .save-btn-loader .dot {
   border-radius: 50%;
+  animation: dotBounce 1.2s ease-in-out infinite;
+}
+
+.push-btn-loader .dot:nth-child(2),
+.save-btn-loader .dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.push-btn-loader .dot:nth-child(3),
+.save-btn-loader .dot:nth-child(3) {
+  animation-delay: 0.3s;
 }
 
 .push-btn-loader .dot {
@@ -161,6 +187,154 @@ body {
   margin: 0 3px;
   background: #000;
 }
+
+/* ─── History Section ─── */
+
+.history-details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.history-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+
+.history-toggle::-webkit-details-marker { display: none; }
+
+.history-toggle:hover {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+.history-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.history-list {
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.history-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.history-empty {
+  padding: 12px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-top: 1px solid var(--border);
+  gap: 8px;
+}
+
+.history-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-name {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.lang-badge {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(245, 166, 35, 0.15);
+  color: var(--accent);
+}
+
+.diff-badge {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.diff-easy {
+  background: rgba(0, 184, 163, 0.15);
+  color: #00b8a3;
+}
+
+.diff-medium {
+  background: rgba(255, 192, 30, 0.15);
+  color: #ffc01e;
+}
+
+.diff-hard {
+  background: rgba(255, 55, 95, 0.15);
+  color: #ff375f;
+}
+
+.history-time {
+  font-size: 9.5px;
+  color: var(--text-muted);
+}
+
+.history-link {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.history-link:hover {
+  background: var(--bg-secondary);
+  color: var(--accent);
+}
+
+/* ─── Settings Section ─── */
 
 .settings-details {
   border: 1px solid var(--border);
@@ -193,6 +367,7 @@ body {
   width: 14px;
   height: 14px;
   flex-shrink: 0;
+  transition: transform 0.2s;
 }
 
 .settings-details[open] .settings-gear {
@@ -220,6 +395,13 @@ body {
   letter-spacing: 0.4px;
 }
 
+.field-hint {
+  text-transform: none;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0;
+}
+
 .input-wrap {
   position: relative;
   display: flex;
@@ -235,6 +417,7 @@ body {
   color: var(--text-primary);
   font-size: 12.5px;
   outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .input-wrap input { padding-right: 36px; }
@@ -277,6 +460,7 @@ body {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
 }
 
 .save-btn:hover {
